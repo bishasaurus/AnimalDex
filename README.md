@@ -8,7 +8,7 @@ Table of contents:
 
 <b>Installation</b>
   
-  Download the .zip file, extract it, and open the whole project on Eclipse or other Java platform.
+  Download the .zip file, extract it, and open and run the whole project on Eclipse or other Java platform.
   
 <b>Usage</b>
   
