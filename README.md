@@ -6,11 +6,11 @@ Table of contents:
 2. Usage
 3. Credits
 
-Installation
+<u>Installation</u>
   
   Download the .zip file, extract it, and open the whole project on Eclipse or other Java platform.
   
-Usage
+<u>Usage</u>
   
   Here you can see the basic UI of the software:
   
@@ -30,6 +30,6 @@ Here's what it may look like when you search for every animal with 'c' on their 
  
  Press the Reset search -button to show all animals in the table again.
  
- Credits
+ <u>Credits</u>
   
   Huge credit goes to the animals who inspired me to do this project, and to my friend Markus, who helped me during hard times.
