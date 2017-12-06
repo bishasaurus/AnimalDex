@@ -10,22 +10,20 @@ public class SimpleAnimal { //class for constructing SimpleAnimal -instances for
 	String animalColor;
 	int validationValue;
 	
-	private Boolean setAnimalName (String Name) { //checks if animal name has any special letters; if it has, sends back 'false' to prevent the creation of instance
+	public Boolean setAnimalName (String Name) { //checks if animal name has any special letters; if it has, sends back 'false' to prevent the creation of instance
 		if (Name.matches("[a-zA-Z]+$")){
 			return true;
 		}
-		else
-		{
+		else {
 			return false;
 		}
 	}	
 	
-	private Boolean setAnimalColor (String Color) { ////checks if animal color has any special letters; if it has, sends back 'false' to prevent the creation of instance
+	public Boolean setAnimalColor (String Color) { ////checks if animal color has any special letters; if it has, sends back 'false' to prevent the creation of instance
 		if (Color.matches("[a-zA-Z]+$")){
 			return true;
 		}
-		else 
-		{
+		else {
 			return false;
 		}
 	}
@@ -61,5 +59,4 @@ public class SimpleAnimal { //class for constructing SimpleAnimal -instances for
 			Animal.dbItems++;
 		} //returns to Animal class
 	}
-
 }
