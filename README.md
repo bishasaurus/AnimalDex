@@ -1,16 +1,16 @@
 # AnimalDex
 AnimalDex is a simple and efficient Java-application to write animals on a table, and filter them with various possibilities. Add animals, search animals and reset search, that's what AnimalDex is all about! Must-have for all animal lovers!
 
-<b>Table of contents:<b>
+Table of contents:
 1. Installation
 2. Usage
 3. Credits
 
-<b>Installation<b>
+Installation
   
   Download the .zip file, extract it, and open the whole project on Eclipse or other Java platform.
   
-<b>Usage<b>
+Usage
   
   Here you can see the basic UI of the software:
   
@@ -30,6 +30,6 @@ Here's what it may look like when you search for every animal with 'c' on their 
  
  Press the Reset search -button to show all animals in the table again.
  
- <b>Credits<b>
+ Credits
   
   Huge credit goes to the animals who inspired me to do this project, and to my friend Markus, who helped me during hard times.
