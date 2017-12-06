@@ -24,7 +24,7 @@ public class Animal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	static int MAX_QTY = 22; //determines the maximum amount of AnimalDex entries
+	static final int MAX_QTY = 22; //determines the maximum amount of AnimalDex entries
 	static int dbItems = 0; //amount of SimpleAnimal instances when program launches, increases with creation of instances. Becomes 2 when initiateAnimalCollection() is run while launching
 
 	static SimpleAnimal[] myDB = new SimpleAnimal[MAX_QTY]; //creates Array for SimpleAnimal instances, having the same limit as AnimalDex entries
