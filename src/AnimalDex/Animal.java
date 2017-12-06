@@ -21,9 +21,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
 public class Animal extends JFrame {
-	/**
-	 * 
-	 */
 
 	private static final long serialVersionUID = 1L;
 
@@ -67,7 +64,6 @@ public class Animal extends JFrame {
 		comboBox.addItem("Insect");
 		comboBox.addItem("Reptile");
 
-
 		JLabel lblHeight = new JLabel("Color");
 		lblHeight.setBounds(15, 106, 69, 20);
 		getContentPane().add(lblHeight);
@@ -102,9 +98,7 @@ public class Animal extends JFrame {
 					}				
 				}
 			}
-		});
-		
-		
+		});		
 
 		JButton btnAnimalDex = new JButton("Search AnimalDex"); //adds button for searching AnimalDex in the UI
 		btnAnimalDex.setBounds(175, 200, 161, 29);
@@ -183,8 +177,7 @@ public class Animal extends JFrame {
 			}
 		}
 	}
-	
-				
+					
 	private void animalDexSearch() { // function called by pressing "Search AnimalDex", creates search window input fields and UI
 
 		JTextField animalName = new JTextField(10);
@@ -251,8 +244,7 @@ public class Animal extends JFrame {
 			RowFilter<DefaultTableModel, Object> colorFilter = RowFilter.regexFilter("(?i)");
 			andFilters.add(colorFilter);
 			
-			sorter.setRowFilter(RowFilter.andFilter(andFilters));
-			
+			sorter.setRowFilter(RowFilter.andFilter(andFilters));			
 
 		} catch (PatternSyntaxException e) {
 			
@@ -261,9 +253,7 @@ public class Animal extends JFrame {
 		}
 		
 	}
-	
-
-	
+		
 	private static void addAnimal(String AnimalNameF, String AnimalSpeciesF, String AnimalColorF) { //receives values from the btnAdd-buttons function to make SimpleAnimal instance
 
 		if(Animal.MAX_QTY == Animal.dbItems){ //check if the array is full, if it is prevents the creation of another instance
@@ -276,11 +266,9 @@ public class Animal extends JFrame {
 				if(comparableValue == dbItems){
 					
 					populateTable(); //populateTable() after a successful instance creation
-					
 				}		
 			}
 		}
-
 
 	public static void main(String[] args) { //entry point for the program, creating and determining all the necessities for the program
 		Animal frame = new Animal();
