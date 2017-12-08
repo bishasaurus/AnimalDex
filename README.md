@@ -30,6 +30,14 @@ Here's what it may look like when you search for every animal with 'c' on their 
  
  Press the Reset search -button to show all animals in the table again.
  
+ A new feature has been added for AnimalDex: adding weight for animals!
+
+![Alt text](https://github.com/bishasaurus/AnimalDex/blob/master/screenshot5.png)
+
+Weight is not needed when creating an animal for the table, so it must be added afterwards by its own input field visible in the above screenshot. Just choose the animal from the table by clicking any column from its row, input weight in numbers to the above input field (no decimals), and click 'Add weight'.
+
+That's all for this time, see ya!
+ 
  <b>Credits</b>
   
   Huge credit goes to the animals who inspired me to do this project, and to my friend Markus, who helped me during hard times.
