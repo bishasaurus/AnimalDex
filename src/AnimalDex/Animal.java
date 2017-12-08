@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
@@ -46,7 +47,7 @@ public class Animal extends JFrame {
 		getContentPane().add(lblAnimalName);
 
 		JTextField nameField = new JTextField();
-		nameField.setBounds(175, 31, 161, 26);
+		nameField.setBounds(251, 31, 161, 26);
 		getContentPane().add(nameField);
 		nameField.setColumns(10);
 
@@ -55,7 +56,7 @@ public class Animal extends JFrame {
 		getContentPane().add(lblSpecies);
 
 		JComboBox<String> comboBox = new JComboBox<String>(); //creates JComboBox for choosing animal species from prefixed choices, making it easier to pick the right species for the user
-		comboBox.setBounds(175, 67, 161, 26);
+		comboBox.setBounds(251, 67, 161, 26);
 		getContentPane().add(comboBox);
 		comboBox.addItem("Choose...");
 		comboBox.addItem("Mammal");
@@ -64,17 +65,18 @@ public class Animal extends JFrame {
 		comboBox.addItem("Insect");
 		comboBox.addItem("Reptile");
 
+
 		JLabel lblHeight = new JLabel("Color");
 		lblHeight.setBounds(15, 106, 69, 20);
 		getContentPane().add(lblHeight);
 
 		JTextField colorField = new JTextField();
-		colorField.setBounds(175, 103, 161, 26);
+		colorField.setBounds(251, 103, 161, 26);
 		getContentPane().add(colorField);
 		colorField.setColumns(10);
 
 		JButton btnAdd = new JButton("Add"); //adds Add-button below to the input fields
-		btnAdd.setBounds(175, 162, 161, 29);
+		btnAdd.setBounds(251, 163, 161, 29);
 		getContentPane().add(btnAdd);
 
 		btnAdd.addActionListener(new ActionListener() { //determines the functions of Add-button
@@ -98,10 +100,11 @@ public class Animal extends JFrame {
 					}				
 				}
 			}
-		});		
+		});
+		
 
 		JButton btnAnimalDex = new JButton("Search AnimalDex"); //adds button for searching AnimalDex in the UI
-		btnAnimalDex.setBounds(175, 200, 161, 29);
+		btnAnimalDex.setBounds(251, 197, 161, 29);
 		getContentPane().add(btnAnimalDex);
 
 		MyEventHandler commandHandler = new MyEventHandler(); //commandHandler is created to handle events launched by buttons
@@ -109,45 +112,106 @@ public class Animal extends JFrame {
 		btnAdd.addActionListener(commandHandler); //commandHandler added to buttons
 		btnAnimalDex.addActionListener(commandHandler);
 
-		animalTable = new JTable(model = new DefaultTableModel(new Object[MAX_QTY][3], //creates JTable on the UI for displaying SimpleAnimal instances
-				new String[] { "Name", "Species", "Color" })); //determines JTable fields
+		animalTable = new JTable(model = new DefaultTableModel(new Object[MAX_QTY][4], //creates JTable on the UI for displaying SimpleAnimal instances
+				new String[] { "Name", "Species", "Color", "Weight" })); //determines JTable fields
 		sorter = new TableRowSorter<DefaultTableModel>(model); //sorter is assigned to filter JTable entries. Will be used by Search AnimalDex's functions
+		animalTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); //allows only one row to be chosen for the "Weight to selection" buttons use
 
 		animalTable.setRowSorter(sorter);
-		animalTable.setBounds(379, 70, 382, 351);
+		animalTable.setBounds(479, 170, 382, 351);
 
 		getContentPane().add(animalTable);
 		
 		ImageIcon image = new ImageIcon(AnimalImageControl.imageControl()); //creates image in left bottom of the program's UI, the image itself is handled by separate class, which is summoned via function (check AnimalImageControl)
 		JLabel imagelabel = new JLabel(image);
-		imagelabel.setBounds(15, 242, 321, 179);
+		imagelabel.setBounds(15, 242, 449, 279);
 		getContentPane().add(imagelabel);
 		
-		JLabel lblAnimalName_1 = new JLabel("Animal name"); //following labels exist to make the table's data easier to read, labeling each field with corresponding name
-		lblAnimalName_1.setBounds(391, 34, 113, 20);
+		JLabel lblAnimalName_1 = new JLabel("Animal"); //following labels exist to make the table's data easier to read, labeling each field with corresponding name
+		lblAnimalName_1.setBounds(497, 116, 60, 20);
 		getContentPane().add(lblAnimalName_1);
 		
+		JLabel lblName = new JLabel("name");
+		lblName.setBounds(499, 137, 69, 20);
+		getContentPane().add(lblName);
+		
 		JLabel lblSpecies_1 = new JLabel("Species");
-		lblSpecies_1.setBounds(540, 34, 69, 20);
+		lblSpecies_1.setBounds(593, 137, 69, 20);
 		getContentPane().add(lblSpecies_1);
 		
 		JLabel lblColor = new JLabel("Color");
-		lblColor.setBounds(674, 34, 69, 20);
+		lblColor.setBounds(697, 137, 69, 20);
 		getContentPane().add(lblColor);
 		
+		JLabel lblWeight = new JLabel("Weight (kg)");
+		lblWeight.setBounds(773, 137, 83, 20);
+		getContentPane().add(lblWeight);
+		
 		JButton btnResetButton = new JButton("Reset search"); //a new button for reseting search results and reverting the table to its normal state
-		btnResetButton.setBounds(15, 200, 154, 29);
+		btnResetButton.setBounds(60, 197, 144, 29);
 		getContentPane().add(btnResetButton);
 		
-		btnResetButton.addActionListener(commandHandler);
+		JButton btnWeightButton = new JButton("Add weight"); //a new button for adding weight value for an instance
+		btnWeightButton.setBounds(748, 66, 113, 29);
+		getContentPane().add(btnWeightButton);
+		
+		JLabel lblSelectAnimalFrom = new JLabel("Select animal from table and input weight here:");
+		lblSelectAnimalFrom.setBounds(479, 34, 412, 20);
+		getContentPane().add(lblSelectAnimalFrom);
+		
+		JTextField weightField = new JTextField();
+		weightField.setBounds(587, 67, 146, 26);
+		getContentPane().add(weightField);
+		weightField.setColumns(10);
+		
+		btnResetButton.addActionListener(commandHandler); //commandHandlers for the new buttons
+		//btnWeightButton.addActionListener(commandHandler);
+		
+		btnWeightButton.addActionListener(new ActionListener() { //determines the functions of Add weight-button
+			public void actionPerformed(ActionEvent e) {
+				int chosenRow = animalTable.getSelectedRow()+1;
+				if(chosenRow == 0) //checks is any row is selected; if not, asks user to select a row
+				{
+					JOptionPane.showMessageDialog(null, "Please choose an animal from the table");
+				}
+				else if(animalTable.getSelectedRow() > dbItems-1) //compares selected row value to the amount of instances in array; if row of higher index than amount of instances is chosen, it means that the row can't have animal data, and so adding weight value is meaningless
+				{
+					JOptionPane.showMessageDialog(null, "Please choose a row with animal data in it");
+				}
+					
+				else if (weightField.getText().equals("")) { //checks if JTextFields have any text; if not, gives an error message and stops execution of the function
+					JOptionPane.showMessageDialog(null, "Input field cannot be empty");
+					}	
+				else if(weightField.getText().matches("[a-zA-Z0-9 ]*") == false) //checks input field for special symbols to prevent wrong value from progressing to the setter
+				{
+					JOptionPane.showMessageDialog(null, "Only numbers are allowed for weight value");
+				}
+					else
+					{
+						
+						if(myDB[animalTable.getSelectedRow()].setAnimalWeight(weightField.getText()) == false) //uses setAnimalWeight to do the rest of input validation and tries, if setting weight value for the instance's animalWeight variable is possible currently (check SimpleAnimal)
+						{
+							JOptionPane.showMessageDialog(null, "Please give a number value for weight");
+						}
+						else if(myDB[animalTable.getSelectedRow()].setAnimalWeight(weightField.getText()) == true) //if addition is successful, uses setAnimalWeight to set value to instance's animalWeight, informs the user about successful addition and resets input field
+						{
+							myDB[animalTable.getSelectedRow()].setAnimalWeight(weightField.getText());
+							JOptionPane.showMessageDialog(null, "Weight has been added!");
+							weightField.setText("");
+						}
 
+					}
+				}
+			});
+		
 	}
 
-	private static void populateTable() { //function that is in charge of filling the table with SimpleAnimal instances; is run every time a new instance is created, and when program is launched to show initiateAnimalCollection()-function's results
+	static void populateTable() { //function that is in charge of filling the table with SimpleAnimal instances; is run every time a new instance is created, and when program is launched to show initiateAnimalCollection()-function's results
 		for (int row = 0; row < dbItems; row++) {
 			animalTable.setValueAt(myDB[row].animalName, row, 0); 
 			animalTable.setValueAt(myDB[row].animalSpecies, row, 1); 
 			animalTable.setValueAt(myDB[row].animalColor, row, 2); 
+			animalTable.setValueAt(myDB[row].animalWeight, row, 3);
 		}
 	}
 
@@ -171,16 +235,15 @@ public class Animal extends JFrame {
 				animalDexSearchResetAlt();
 				
 				}
-				else
-				{
-					return;
-			}
-		}
-	}
-					
+	
+				}
+	
+			}	
+	
 	private void animalDexSearch() { // function called by pressing "Search AnimalDex", creates search window input fields and UI
 
 		JTextField animalName = new JTextField(10);
+		
 		JComboBox<String> animalSpecies = new JComboBox<String>();
 		animalSpecies.addItem("");
 		animalSpecies.addItem("Mammal");
@@ -188,8 +251,10 @@ public class Animal extends JFrame {
 		animalSpecies.addItem("Bird");
 		animalSpecies.addItem("Insect");
 		animalSpecies.addItem("Reptile");
+		
 		JTextField animalColor = new JTextField(10);
-
+		
+	
 		JPanel myPanel = new JPanel();
 
 		myPanel.add(new JLabel("Animal name"));
@@ -200,6 +265,8 @@ public class Animal extends JFrame {
 
 		myPanel.add(new JLabel("Color"));
 		myPanel.add(animalColor);
+		
+		
 
 		UIManager.put("OptionPane.minimumSize", new Dimension(500, 100)); // creates OptionPane to let user press 'ok' to search, or 'cancel' to cancel the search
 		int result = JOptionPane.showConfirmDialog(null, myPanel, "Search AnimalDex", JOptionPane.OK_CANCEL_OPTION);
@@ -212,8 +279,7 @@ public class Animal extends JFrame {
 				RowFilter<DefaultTableModel, Object> nameFilter = RowFilter.regexFilter("(?i)" + animalName.getText(), 0);
 				andFilters.add(nameFilter);
 
-				RowFilter<DefaultTableModel, Object> speciesFilter = RowFilter
-						.regexFilter("(?i)" + animalSpecies.getSelectedItem().toString(), 1);
+				RowFilter<DefaultTableModel, Object> speciesFilter = RowFilter.regexFilter("(?i)" + animalSpecies.getSelectedItem().toString(), 1);
 				andFilters.add(speciesFilter);
 
 				RowFilter<DefaultTableModel, Object> colorFilter = RowFilter.regexFilter("(?i)" + animalColor.getText(), 2);
@@ -244,7 +310,9 @@ public class Animal extends JFrame {
 			RowFilter<DefaultTableModel, Object> colorFilter = RowFilter.regexFilter("(?i)");
 			andFilters.add(colorFilter);
 			
-			sorter.setRowFilter(RowFilter.andFilter(andFilters));			
+			sorter.setRowFilter(RowFilter.andFilter(andFilters));
+			populateTable();
+			
 
 		} catch (PatternSyntaxException e) {
 			
@@ -252,8 +320,8 @@ public class Animal extends JFrame {
 				return;
 		}
 		
-	}
-		
+	}	
+	
 	private static void addAnimal(String AnimalNameF, String AnimalSpeciesF, String AnimalColorF) { //receives values from the btnAdd-buttons function to make SimpleAnimal instance
 
 		if(Animal.MAX_QTY == Animal.dbItems){ //check if the array is full, if it is prevents the creation of another instance
@@ -266,6 +334,7 @@ public class Animal extends JFrame {
 				if(comparableValue == dbItems){
 					
 					populateTable(); //populateTable() after a successful instance creation
+					
 				}		
 			}
 		}
@@ -274,7 +343,7 @@ public class Animal extends JFrame {
 		Animal frame = new Animal();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-		frame.setSize(798, 496);
+		frame.setSize(943, 596);
 		frame.setLocationRelativeTo(null);
 
 		initiateAnimalCollection(); //inserts the samples to the table
