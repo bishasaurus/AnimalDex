@@ -8,7 +8,9 @@ public class SimpleAnimal { //class for constructing SimpleAnimal -instances for
 	String animalName;
 	String animalSpecies;
 	String animalColor;
-	int validationValue;
+	Double animalWeight;
+	
+	
 	
 	public Boolean setAnimalName (String Name) { //checks if animal name has any special letters; if it has, sends back 'false' to prevent the creation of instance
 		if (Name.matches("[a-zA-Z]+$")){
@@ -27,6 +29,26 @@ public class SimpleAnimal { //class for constructing SimpleAnimal -instances for
 			return false;
 		}
 	}
+	
+	public Boolean setAnimalWeight(String receivedWeight) { //checks the validity of the given animal weight; the method only allows pure int number input. If input is valid, sets the value for the instance who summoned the setter
+		if (receivedWeight.matches("[^A-Za-z0-9]*$") || receivedWeight.matches("[a-zA-Z]+$"))
+		{
+			return false;
+		}
+		else {
+			double finalWeight = Double.parseDouble(receivedWeight);
+			if(finalWeight <= 0)
+			{
+				return false;
+			}
+			else
+			{		
+				this.animalWeight = finalWeight;
+				Animal.populateTable();
+				return true;
+			}
+		}
+	}	
 	
 	SimpleAnimal (String aAnimalName, String aAnimalSpecies, String aAnimalColor) //constructor for AnimalDex instances, receiving three String values to create an instance with needed parameters
 	{
@@ -59,4 +81,5 @@ public class SimpleAnimal { //class for constructing SimpleAnimal -instances for
 			Animal.dbItems++;
 		} //returns to Animal class
 	}
+
 }
